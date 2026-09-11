@@ -40,3 +40,17 @@ hist(coffee$money,
 barplot(sort(table(coffee$coffee_name), decreasing = TRUE),
         main = "Number of Sales by Coffee Type",
         las = 2, col = "coral")
+
+
+shapiro.test(coffee$money[coffee$cash_type == "cash"])
+shapiro.test(coffee$money[coffee$cash_type == "card"])
+
+qqnorm(coffee$money[coffee$cash_type == "cash"], main = "QQ Plot - Cash")
+qqline(coffee$money[coffee$cash_type == "cash"])
+
+qqnorm(coffee$money[coffee$cash_type == "card"], main = "QQ Plot - Card")
+qqline(coffee$money[coffee$cash_type == "card"])
+
+var.test(money ~ cash_type, data = coffee)
+
+t.test(money ~ cash_type, data = coffee)
